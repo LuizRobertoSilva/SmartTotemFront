@@ -1,0 +1,60 @@
+<ngx-spinner></ngx-spinner>
+<div class="container-fluid" style="height: 100vh;">
+    <div class="row" style="height: 100vh;">
+        <div class="col-md-5">
+            <h1>Smart Totem</h1>
+            <form [formGroup]="deviceForm" (ngSubmit)="createDevice()" >
+                <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input class="form-control" name="inputName" formControlName="name" placeholder="Enter Device Name">
+                </div>
+                <div class="form-group">
+                    <label for="inputRegion">Region</label>
+                    <input class="form-control" id="inputRegion" placeholder="Enter Region Name"
+                        formControlName="region">
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="inputLatitude">Latitude</label>
+                        <input class="form-control" name="inputLatitude" formControlName="latitude">
+                    </div>
+                    <div class="col form-group">
+                        <label for="inputLongitude">Longitude</label>
+                        <input class="form-control" id="inputLongitude" formControlName="longitude">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Criar Device</button>
+            </form>
+
+            <hr>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Device</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Lat,Lon</th>
+                        <th scope="col">Temperature</th>
+                        <th scope="col">Humidity</th>
+                        <th scope="col">CO2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let device of devices">
+                        <th scope="row">{{device.id}}</th>
+                        <td>{{device.name}}</td>
+                        <td>{{device.region.name}}</td>
+                        <td>{{device.latitude}}, {{device.longitude}}</td>
+                        <td>{{device.currentTemperature}}</td>
+                        <td>{{device.currentHumidity}}</td>
+                        <td>{{device.currentCO2}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md-7">
+            <div #mapContainer id="map"></div>
+        </div>
+    </div>
+</div>
